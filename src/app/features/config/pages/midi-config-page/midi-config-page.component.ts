@@ -30,13 +30,6 @@ export class MidiConfigPageComponent {
   );
 
   constructor() {
-    midiUtils.getMidiController()
-      .then((midiAccess) => {
-        this.midiSvc.setMidiAccess(midiAccess);
-        this.midiSvc.selectMidiInput(midiUtils.getInputs(midiAccess)[0]); // DONT SET INPUT
-      })
-      .catch((error) => this.midiSvc.throwError(error.message));
-
     this.selectedMidiInputId$
       .pipe(
         takeUntilDestroyed(),

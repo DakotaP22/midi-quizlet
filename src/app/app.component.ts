@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 import { map } from 'rxjs';
 import { Chord } from './midi/instruments/types/Chord';
 import { Note } from './midi/instruments/types/Note';
-import * as MIDI from './midi/midi-utils';
+import * as midiUtils from './midi/midi-utils';
 import { MidiService } from './midi/midi.service';
 
 @Component({
@@ -30,6 +30,14 @@ export class AppComponent {
   );
 
   constructor() {
+    midiUtils
+      .getMidiController()
+      .then((midiAccess) => {
+        this.midiSvc.setMidiAccess(midiAccess);
+        this.midiSvc.selectMidiInput(midiUtils.getInputs(midiAccess)[0]); // DONT SET INPUT
+      })
+      .catch((error) => this.midiSvc.throwError(error.message));
+
     this.midiSvc.notePlayed$.pipe(takeUntilDestroyed()).subscribe({
       next: (note) => {
         this.note.set(note);
