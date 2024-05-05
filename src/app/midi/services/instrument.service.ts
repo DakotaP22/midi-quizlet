@@ -9,9 +9,9 @@ import {
   scan,
   shareReplay,
 } from 'rxjs';
-import * as midiUtils from './midi-utils';
-import * as Piano from './instruments/Piano';
-import { Scale } from './instruments/types/Scale';
+import * as midiUtils from '../midi-utils';
+import * as Piano from '../instruments/Piano';
+import { Scale } from '../instruments/types/Scale';
 
 @Injectable({ providedIn: 'root' })
 export class InsturmentService {

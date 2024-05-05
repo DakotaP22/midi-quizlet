@@ -11,7 +11,7 @@ import { map } from 'rxjs';
 import { Chord } from './midi/instruments/types/Chord';
 import { Note } from './midi/instruments/types/Note';
 import * as midiUtils from './midi/midi-utils';
-import { MidiService } from './midi/midi.service';
+import { MidiService } from './midi/services/midi.service';
 
 @Component({
   selector: 'app-root',

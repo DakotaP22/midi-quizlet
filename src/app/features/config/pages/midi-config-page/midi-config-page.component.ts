@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { filter, first, map, switchMap, take } from 'rxjs';
 import * as midiUtils from '../../../../midi/midi-utils';
-import { MidiService } from '../../../../midi/midi.service';
+import { MidiService } from '../../../../midi/services/midi.service';
 
 @Component({
   selector: 'app-midi-config-page',

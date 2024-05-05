@@ -1,8 +1,8 @@
 import { Component, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
-import { InsturmentService } from '../../../../midi/instrument.service';
-import { MidiService } from '../../../../midi/midi.service';
+import { InsturmentService } from '../../../../midi/services/instrument.service';
+import { MidiService } from '../../../../midi/services/midi.service';
 
 @Component({
   selector: 'app-piano',
