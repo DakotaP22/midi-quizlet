@@ -1,4 +1,4 @@
-import { getScaleMaps } from './ScaleFactory';
+import { getScaleMaps } from './scale-maps/ScaleFactory';
 import { Chord } from './types/Chord';
 import { Note } from './types/Note';
 import { Scale } from './types/Scale';
