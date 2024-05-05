@@ -70,7 +70,6 @@ export class MidiService {
   notePlayed$ = this.notesDown$.pipe(
     map((notes) => {
       if (notes.length != 1) return null;
-
       return Piano.getNote(notes[0], { root: { note: 'C' }, type: 'major' });
     }),
     shareReplay()
