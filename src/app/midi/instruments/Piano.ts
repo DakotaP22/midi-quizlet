@@ -1,16 +1,24 @@
 import { getScaleMaps } from './ScaleFactory';
 import { Chord, Note, Scale } from './types';
 
-export const getNoteOrChord = (notes: number[], scale: Scale): Note | Chord => {
-  notes = notes.sort((a, b) => a - b).map((note) => note % 12);
+export const getNote = (note: number, scale: Scale): Note => {
+  const [noteMap] = getScaleMaps(scale);
+  return noteMap[note % 12];
+};
 
-  const [noteMap, chordMap] = getScaleMaps(scale);
+export const getChord = (notes: number[], scale: Scale): Chord => {
+  const [_, chordMap] = getScaleMaps(scale);
+  return chordMap[
+    notes
+      .sort((a, b) => a - b)
+      .map((note) => note % 12)
+      .join(',')
+  ];
+};
 
-  console.log(notes);
-
-  if (notes.length === 1) {
-    return noteMap[notes[0]];
-  } else {
-    return chordMap[notes.join(',')];
-  }
+export const getNotes = (notes: number[], scale: Scale): Note[] => {
+  return notes
+    .sort((a, b) => a - b)
+    .map((note) => note % 12)
+    .map((note) => getNote(note, scale));
 };

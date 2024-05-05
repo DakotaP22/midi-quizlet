@@ -49,15 +49,34 @@ export class MidiService {
       }
       return acc;
     }, [] as number[]),
-    debounceTime(50)
+    debounceTime(50),
+    shareReplay()
   );
 
-  noteOrChord$ = this.notesDown$.pipe(
+  notes$ = this.notesDown$.pipe(
     map((notes) => {
-      console.log(notes);
-      if (notes.length === 0) return undefined;
-      return Piano.getNoteOrChord(notes, { root: 'C', type: 'major' });
-    })
+      if (!notes || notes.length < 1) return null;
+      return Piano.getNotes(notes, { root: 'C', type: 'major' });
+    }),
+    shareReplay()
+  );
+
+  notePlayed$ = this.notesDown$.pipe(
+    map((notes) => {
+      if (notes.length != 1) return null;
+
+      return Piano.getNote(notes[0], { root: 'C', type: 'major' });
+    }),
+    shareReplay()
+  );
+
+  chordPlayed$ = this.notesDown$.pipe(
+    map((notes) => {
+      if (notes.length < 3) return null;
+
+      return Piano.getChord(notes, { root: 'C', type: 'major' });
+    }),
+    shareReplay()
   );
 
   setMidiAccess(access: MIDIAccess) {
@@ -70,11 +89,5 @@ export class MidiService {
 
   throwError(error: string) {
     this.error$.next(error);
-  }
-
-  constructor() {
-    this.noteOrChord$.pipe(takeUntilDestroyed()).subscribe((noteOrChord) => {
-      console.log(noteOrChord);
-    });
   }
 }
