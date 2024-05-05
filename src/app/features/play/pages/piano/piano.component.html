@@ -1,0 +1,11 @@
+<p>Notes Played: {{notes()}}</p>
+
+<span>
+  <p>Note: {{ note()?.note }}</p>
+  <p>Octave: {{note()?.octave}}</p>
+</span>
+
+<span>
+  <p>Chord: {{ chord()?.root?.note }} {{chord()?.type}}</p>
+  <p>Octave: {{chord()?.rootOctave}}</p>
+</span>
