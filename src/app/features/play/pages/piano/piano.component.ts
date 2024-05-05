@@ -1,9 +1,8 @@
-import { Component, effect, inject, signal } from '@angular/core';
-import { MidiService } from '../../../../midi/midi.service';
-import { BaseNote, Note } from '../../../../midi/instruments/types/Note';
-import { Chord } from '../../../../midi/instruments/types/Chord';
+import { Component, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { map, tap } from 'rxjs';
+import { map } from 'rxjs';
+import { InsturmentService } from '../../../../midi/instrument.service';
+import { MidiService } from '../../../../midi/midi.service';
 
 @Component({
   selector: 'app-piano',
@@ -14,18 +13,18 @@ import { map, tap } from 'rxjs';
 })
 export class PianoComponent {
   midiSvc = inject(MidiService);
+  instrumentSvc = inject(InsturmentService);
 
-  note = toSignal(this.midiSvc.notePlayed$, {
+  note = toSignal(this.instrumentSvc.notePlayed$, {
     initialValue: null,
   });
-  chord = toSignal(
-    this.midiSvc.chordPlayed$,
-    {
-      initialValue: null,
-    }
-  );
+  chord = toSignal(this.instrumentSvc.chordPlayed$, {
+    initialValue: null,
+  });
   notes = toSignal(
-    this.midiSvc.notes$.pipe(map((notes) => notes?.map((note) => note.note))),
+    this.instrumentSvc.notes$.pipe(
+      map((notes) => notes?.map((note) => note.note))
+    ),
     { initialValue: [] }
   );
 
