@@ -22,8 +22,7 @@ export const getInputs = (midiAccess: MIDIAccess): MIDIInput[] => {
   return inputs;
 };
 
-export const listenTo$ = (input: MIDIInput): Observable<MidiMessage> => {
-  const values$ = new Subject<MidiMessage>();
+export const listenTo$ = (input: MIDIInput, values$: Subject<MidiMessage>): Observable<MidiMessage> => {
   input.onmidimessage = (event: MIDIMessageEvent) => {
     if (!event.data) {
       return;

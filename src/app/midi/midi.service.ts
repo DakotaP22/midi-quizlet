@@ -5,6 +5,7 @@ import {
   Subject,
   debounce,
   debounceTime,
+  filter,
   map,
   of,
   scan,
@@ -33,12 +34,13 @@ export class MidiService {
     new BehaviorSubject<MIDIInput | null>(null);
 
   // notePress$ = this.selectedMidiInput$.pipe(tap((data) => console.log(data)));
+  private noteValues = new Subject<MidiMessage>();
   noteEvent$: Observable<MidiMessage | null> = this.selectedMidiInput$.pipe(
     switchMap((input: MIDIInput | null) => {
-      // console.log(input);
       if (!input) return of(null);
-      return midiUtils.listenTo$(input);
+      return midiUtils.listenTo$(input, this.noteValues);
     }),
+    filter((msg) => !!msg),
     shareReplay()
   );
 
@@ -87,7 +89,7 @@ export class MidiService {
     this.midiAccess$.next(access);
   }
 
-  selectMidiInput(input: MIDIInput) {
+  selectMidiInput(input: MIDIInput | null) {
     this.selectedMidiInput$.next(input);
   }
 

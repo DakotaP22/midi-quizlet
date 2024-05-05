@@ -30,13 +30,6 @@ export class AppComponent {
   );
 
   constructor() {
-    MIDI.getMidiController()
-      .then((midiAccess) => {
-        this.midiSvc.setMidiAccess(midiAccess);
-        this.midiSvc.selectMidiInput(MIDI.getInputs(midiAccess)[0]);
-      })
-      .catch((error) => this.midiSvc.throwError(error.message));
-
     this.midiSvc.notePlayed$.pipe(takeUntilDestroyed()).subscribe({
       next: (note) => {
         this.note.set(note);
@@ -51,7 +44,7 @@ export class AppComponent {
 
     effect(() => {
       this.note();
-      console.log(this.notes());
+      this.notes();
       this.chord();
     });
   }

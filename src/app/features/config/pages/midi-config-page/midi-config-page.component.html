@@ -1,0 +1,16 @@
+<h1 class="mat-headline-1">Midi Configuration</h1>
+
+<form [formGroup]="midiConfigForm">
+  <mat-form-field>
+    <mat-label>Select a MIDI Input</mat-label>
+    <select matNativeControl required title="midi-input-selector" formControlName="midiInputId">
+      <option [value]="null" [selected]="!selectedInput()">None</option>
+
+      @for (input of availableMidiInputs(); track input.id) {
+      <option [value]="input.id" [selected]="selectedInput()?.id === input?.id">{{ input.name }}</option>
+      } @empty {
+      <option disabled>No Inputs Available</option>
+      }
+    </select>
+  </mat-form-field>
+</form>
