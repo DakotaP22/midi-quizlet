@@ -1,4 +1,5 @@
-import { ChordMap, Note, NoteMap } from '../types/types';
+import { ChordMap } from '../types/Chord';
+import { NoteMap } from '../types/Note';
 
 export const Notes: NoteMap = {
   0: { note: 'C' },

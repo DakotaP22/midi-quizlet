@@ -1,21 +1,17 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  WritableSignal,
-  computed,
   effect,
   inject,
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { map } from 'rxjs';
+import { Chord } from './midi/instruments/types/Chord';
+import { Note } from './midi/instruments/types/Note';
 import * as MIDI from './midi/midi-utils';
 import { MidiService } from './midi/midi.service';
-import { Note, Chord, Scale } from './midi/instruments/types/types';
-import { map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-root',
