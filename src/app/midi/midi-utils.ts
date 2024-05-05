@@ -22,24 +22,6 @@ export const getInputs = (midiAccess: MIDIAccess): MIDIInput[] => {
   return inputs;
 };
 
-export const listInputsAndOutputs = (midiAccess: MIDIAccess) => {
-  midiAccess.inputs.forEach((input) => {
-    console.log(
-      `Input port [type:'${input.type}']` +
-        ` id:'${input.id}'` +
-        ` manufacturer:'${input.manufacturer}'` +
-        ` name:'${input.name}'` +
-        ` version:'${input.version}'`
-    );
-  });
-
-  midiAccess.outputs.forEach((output) => {
-    console.log(
-      `Output port [type:'${output.type}'] id:'${output.id}' manufacturer:'${output.manufacturer}' name:'${output.name}' version:'${output.version}'`
-    );
-  });
-};
-
 export const listenTo$ = (input: MIDIInput): Observable<MidiMessage> => {
   const values$ = new Subject<MidiMessage>();
   input.onmidimessage = (event: MIDIMessageEvent) => {

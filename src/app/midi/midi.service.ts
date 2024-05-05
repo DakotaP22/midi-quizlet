@@ -13,6 +13,7 @@ import {
 } from 'rxjs';
 import * as midiUtils from './midi-utils';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import * as Piano from '../midi/instruments/Piano';
 
 @Injectable({ providedIn: 'root' })
 export class MidiService {
@@ -51,6 +52,14 @@ export class MidiService {
     debounceTime(50)
   );
 
+  noteOrChord$ = this.notesDown$.pipe(
+    map((notes) => {
+      console.log(notes);
+      if (notes.length === 0) return undefined;
+      return Piano.getNoteOrChord(notes, { root: 'C', type: 'major' });
+    })
+  );
+
   setMidiAccess(access: MIDIAccess) {
     this.midiAccess$.next(access);
   }
@@ -64,8 +73,8 @@ export class MidiService {
   }
 
   constructor() {
-    this.notesDown$.pipe(takeUntilDestroyed()).subscribe((notes) => {
-      console.log('Notes down:', notes);
+    this.noteOrChord$.pipe(takeUntilDestroyed()).subscribe((noteOrChord) => {
+      console.log(noteOrChord);
     });
   }
 }
