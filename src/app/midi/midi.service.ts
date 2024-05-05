@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   BehaviorSubject,
+  Observable,
   Subject,
   debounce,
   debounceTime,
@@ -14,6 +15,7 @@ import {
 import * as midiUtils from './midi-utils';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import * as Piano from '../midi/instruments/Piano';
+import { MidiMessage } from './MidiMessage';
 
 @Injectable({ providedIn: 'root' })
 export class MidiService {
@@ -31,10 +33,10 @@ export class MidiService {
     new BehaviorSubject<MIDIInput | null>(null);
 
   // notePress$ = this.selectedMidiInput$.pipe(tap((data) => console.log(data)));
-  noteEvent$ = this.selectedMidiInput$.pipe(
+  noteEvent$: Observable<MidiMessage | null> = this.selectedMidiInput$.pipe(
     switchMap((input: MIDIInput | null) => {
       // console.log(input);
-      if (!input) return of();
+      if (!input) return of(null);
       return midiUtils.listenTo$(input);
     }),
     shareReplay()
@@ -42,6 +44,8 @@ export class MidiService {
 
   notesDown$ = this.noteEvent$.pipe(
     scan((acc, curr) => {
+      if (!curr) return acc;
+
       if (curr.status === 'Note Off') {
         return acc.filter((note) => note !== curr.note);
       } else {
@@ -56,7 +60,7 @@ export class MidiService {
   notes$ = this.notesDown$.pipe(
     map((notes) => {
       if (!notes || notes.length < 1) return null;
-      return Piano.getNotes(notes, { root: 'C', type: 'major' });
+      return Piano.getNotes(notes, { root: { note: 'C' }, type: 'major' });
     }),
     shareReplay()
   );
@@ -65,7 +69,7 @@ export class MidiService {
     map((notes) => {
       if (notes.length != 1) return null;
 
-      return Piano.getNote(notes[0], { root: 'C', type: 'major' });
+      return Piano.getNote(notes[0], { root: { note: 'C' }, type: 'major' });
     }),
     shareReplay()
   );
@@ -74,7 +78,7 @@ export class MidiService {
     map((notes) => {
       if (notes.length < 3) return null;
 
-      return Piano.getChord(notes, { root: 'C', type: 'major' });
+      return Piano.getChord(notes, { root: { note: 'C' }, type: 'major' });
     }),
     shareReplay()
   );

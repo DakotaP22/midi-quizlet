@@ -1,9 +1,12 @@
 export type BaseNote = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G';
-export type incindentals = 'b' | '#' | '';
+export type accidental = 'b' | '#' | '';
 export type ChordType = 'major' | 'minor' | 'diminished' | 'augmented';
 export type ScaleType = 'major' | 'minor' | 'diminished' | 'augmented';
 
-export type Note = `${BaseNote}${incindentals}`;
+export type Note = {
+  note: `${BaseNote}${accidental}`;
+  octave?: number;
+};
 
 export type Chord = {
   root: Note;
