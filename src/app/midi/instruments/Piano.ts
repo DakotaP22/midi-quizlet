@@ -3,7 +3,9 @@ import { Chord, Note, Scale } from './types/types';
 
 export const getNote = (note: number, scale: Scale): Note => {
   const [noteMap] = getScaleMaps(scale);
-  return noteMap[note % 12];
+  const newNote = noteMap[note % 12];
+  newNote.octave = Math.floor(note / 12);
+  return newNote;
 };
 
 export const getChord = (notes: number[], scale: Scale): Chord => {
