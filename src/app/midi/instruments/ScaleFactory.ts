@@ -1,4 +1,4 @@
-import { ChordMap, NoteMap, Scale } from './types';
+import { ChordMap, NoteMap, Scale } from './types/types';
 import * as C_Major from './scale-maps/C_Major';
 
 export const getScaleMaps = (scale: Scale): [NoteMap, ChordMap] => {

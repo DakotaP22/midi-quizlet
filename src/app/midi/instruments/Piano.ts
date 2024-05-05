@@ -1,5 +1,5 @@
 import { getScaleMaps } from './ScaleFactory';
-import { Chord, Note, Scale } from './types';
+import { Chord, Note, Scale } from './types/types';
 
 export const getNote = (note: number, scale: Scale): Note => {
   const [noteMap] = getScaleMaps(scale);

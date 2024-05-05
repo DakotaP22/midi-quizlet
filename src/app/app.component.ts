@@ -14,7 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import * as MIDI from './midi/midi-utils';
 import { MidiService } from './midi/midi.service';
-import { Note, Chord, Scale } from './midi/instruments/types';
+import { Note, Chord, Scale } from './midi/instruments/types/types';
 import { tap } from 'rxjs';
 
 @Component({
