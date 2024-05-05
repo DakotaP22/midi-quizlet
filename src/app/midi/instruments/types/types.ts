@@ -11,6 +11,7 @@ export type Note = {
 export type Chord = {
   root: Note;
   type: ChordType;
+  rootOctave?: number;
 };
 
 export type Scale = {

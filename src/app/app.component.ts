@@ -15,7 +15,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import * as MIDI from './midi/midi-utils';
 import { MidiService } from './midi/midi.service';
 import { Note, Chord, Scale } from './midi/instruments/types/types';
-import { tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +29,9 @@ export class AppComponent {
   midiSvc = inject(MidiService);
   note = signal<Note | null>(null);
   chord = signal<Chord | null>(null);
-  notes = toSignal(this.midiSvc.notes$);
+  notes = toSignal(
+    this.midiSvc.notes$.pipe(map((notes) => notes?.map((note) => note.note)))
+  );
 
   constructor() {
     MIDI.getMidiController()
@@ -53,7 +55,7 @@ export class AppComponent {
 
     effect(() => {
       this.note();
-      this.notes();
+      console.log(this.notes());
       this.chord();
     });
   }
