@@ -13,8 +13,11 @@ export const routes: Routes = [
   {
     path: 'play',
     loadChildren: () =>
-      import('./features/play/pages/play.routes').then(
-        (r) => r.playRoutes
-      ),
+      import('./features/play/pages/play.routes').then((r) => r.playRoutes),
+  },
+  {
+    path: 'study',
+    loadChildren: () =>
+      import('./features/study/pages/study.routes').then((r) => r.studyRoutes),
   },
 ];
