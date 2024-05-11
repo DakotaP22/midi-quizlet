@@ -1,0 +1,51 @@
+.study-card.correct { border-color: #37C166;}
+.study-card.incorrect { border-color: #BA1A1A;}
+
+.study-card {
+  caret-color: transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto Serif';
+
+  width: 700px;
+  height: 300px;
+  padding-bottom: 48px;
+  box-sizing: border-box;
+  border: 2px solid #C1C7CE;
+  border-radius: 16px;
+  background-color: #F1F4F9;
+  filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.15));
+  filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.30));
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 16px;
+    box-sizing: border-box;
+    height: 48px;
+    width: 100%;
+
+    p {
+      font-weight: bold;
+      font-size: 24px;
+      margin: 0;
+    }
+
+    mat-icon {
+      width: 32px;
+      height: 32px;
+      font-size: 32px;
+    }
+  }
+
+  .name {
+    text-align: center;
+    margin-block: auto;
+    font-weight: bold;
+    font-size: 56px;
+  }
+}
+
+

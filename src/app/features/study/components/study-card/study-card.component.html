@@ -1,0 +1,17 @@
+<div [class]="outlineClass()" (click)="flipCard()">
+  @if(isFlipped()) {
+
+  <p>Back of Card...</p>
+
+  } @else {
+  <div class="header">
+    <mat-icon fontIcon="queue_music"></mat-icon>
+
+    <p>{{ data().isChord ? "Chord" : "Note" }}</p>
+
+    <mat-icon fontIcon="settings_filled"></mat-icon>
+  </div>
+
+  <p class="name">{{ data().chordOrNoteName }}</p>
+  }
+</div>
