@@ -1,0 +1,10 @@
+@if(currentCard() > 1) {
+<mat-icon fontIcon="arrow_back" (click)="onPrevCardClick()" />
+}
+
+
+<p class="mat-body-1">{{currentCard()}}/{{totalCards()}}</p>
+
+@if(currentCard() < totalCards()) {
+<mat-icon fontIcon="arrow_forward" (click)="onNextCardClick()" />
+}

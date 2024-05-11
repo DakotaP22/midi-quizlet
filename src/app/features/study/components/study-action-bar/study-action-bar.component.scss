@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  p {
+    font-size: 32px;
+    font-family: 'Roboto Serif';
+    caret-color: transparent;
+    cursor: pointer;
+  }
+}
+
+mat-icon {
+  border: 1px solid #71787E;
+  border-radius: 100%;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+mat-icon:hover {
+  background-color: #F1F4F9;
+}
