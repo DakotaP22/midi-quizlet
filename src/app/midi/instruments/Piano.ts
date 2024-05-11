@@ -1,7 +1,8 @@
 import { getScaleMaps } from './maps/scale-maps/ScaleFactory';
 import { Chord } from './types/Chord';
-import { Note } from './types/Note';
+import { BaseNote, Note } from './types/Note';
 import { Scale } from './types/Scale';
+import { NoteToKeyMap } from './maps/NoteToKeyMap';
 
 export const getNote = (note: number, scale: Scale): Note | null => {
   const [noteMap] = getScaleMaps(scale);
@@ -37,4 +38,12 @@ export const getNotes = (notes: number[], scale: Scale): Note[] => {
     .filter((note) => !!note) as Note[];
 
   return [...newNotes];
+};
+
+export const getKey = (note: Note): number => {
+  return NoteToKeyMap[note.note] + ((note?.octave ?? 0) * 12);
+}
+
+export const getKeys = (notes: Note[]): number[] => {
+  return notes.map((note) => getKey(note));
 };
