@@ -3,6 +3,7 @@ import { Chord } from './types/Chord';
 import { BaseNote, Note } from './types/Note';
 import { Scale } from './types/Scale';
 import { NoteToKeyMap } from './maps/NoteToKeyMap';
+import { KeySpacingChordTypeMap } from './maps/KeySpacingChordTypeMap';
 
 export const getNote = (note: number, scale: Scale): Note | null => {
   const [noteMap] = getScaleMaps(scale);
@@ -44,6 +45,12 @@ export const getKey = (note: Note): number => {
   return NoteToKeyMap[note.note] + ((note?.octave ?? 0) * 12);
 }
 
-export const getKeys = (notes: Note[]): number[] => {
-  return notes.map((note) => getKey(note));
+export const getKeys = (chord: Chord): number[] => {
+  const rootKey = getKey(chord.root);
+  const keys = KeySpacingChordTypeMap[chord.type].map((spacing) => rootKey + spacing);
+  return keys;
+};
+
+export const keyIsAccidental = (key: number): boolean => {
+  return [1, 3, 6, 8, 10].includes(key % 12);
 };
