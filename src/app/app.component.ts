@@ -12,11 +12,12 @@ import { Chord } from './midi/instruments/types/Chord';
 import { Note } from './midi/instruments/types/Note';
 import * as midiUtils from './midi/midi-utils';
 import { MidiService } from './midi/services/midi.service';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, MatToolbarModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
