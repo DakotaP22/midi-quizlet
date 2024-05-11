@@ -1,11 +1,12 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { StudyCardData } from './study-card.types';
+import { PianoSampleComponent } from '../piano-sample/piano-sample.component';
 
 @Component({
   selector: 'study-card',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [MatIconModule, PianoSampleComponent],
   templateUrl: './study-card.component.html',
   styleUrl: './study-card.component.scss'
 })
