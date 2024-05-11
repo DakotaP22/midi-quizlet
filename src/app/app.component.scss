@@ -8,3 +8,18 @@
 .appbar {
   background-color: #C8E6FF;
 }
+
+.main {
+  flex-grow: 1;
+
+  display: flex;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.ad-space {
+  width: 400px;
+  padding-inline: 32px;
+}
