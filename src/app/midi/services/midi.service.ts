@@ -9,7 +9,7 @@ import {
   shareReplay,
   switchMap
 } from 'rxjs';
-import { MidiMessage } from '../MidiMessage';
+import { MidiMessage } from '../midi-utils';
 import * as midiUtils from '../midi-utils';
 
 @Injectable({ providedIn: 'root' })
