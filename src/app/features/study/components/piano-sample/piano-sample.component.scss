@@ -1,35 +1,42 @@
 :host {
+}
 
+.piano {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 8px 16px 4px 16px;
   background: black;
-}
 
-.piano-keys-list {
+  .piano-keys-list {
     list-style: none;
     display: flex;
     justify-content: center;
     padding: 0;
     margin: 0;
-}
+  }
 
-.piano-keys {
+  .piano-keys {
     width: 40px;
     height: 175px;
     border-radius: 0 0 8px 8px;
     cursor: pointer;
     position: relative;
     border: 1px solid #000;
-}
 
-.white-key {
+    p {
+       font-family: 'Roboto Serif';
+       font-size: 28px;
+       margin: 0;
+    }
+  }
+
+  .white-key {
     background-color: #fff;
     margin: 0 -1px 0 -1px;
-}
+  }
 
-.black-key {
+  .black-key {
     width: 20px;
     height: 100px;
     border-radius: 0 0 8px 8px;
@@ -38,8 +45,21 @@
     background-color: #000;
     z-index: 2;
     margin: 0 -11px 0 -11px;
-}
+  }
 
-.selected {
-  background-color: #C8E6FF;
+  .selected {
+    background-color: #c8e6ff;
+    position: relative;
+    p {
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      top: 185px;
+    }
+  }
+  .unselected {
+    p {
+      display: none;
+    }
+  }
 }

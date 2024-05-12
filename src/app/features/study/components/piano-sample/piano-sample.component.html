@@ -1,5 +1,11 @@
-<ul class="piano-keys-list">
-  @for(key of allKeys(); track key) {
-    <li [class]="key | pianoKeyClass : keysToPress()"></li>
-  }
-</ul>
+<div class="piano">
+  <ul class="piano-keys-list">
+    @for(key of allKeys(); track key) {
+      <li [class]="key | pianoKeyClass : keysToPress()">
+        <p>{{(key | keyToNote : scale())?.note}}</p>
+      </li>
+    }
+  </ul>
+</div>
+
+
