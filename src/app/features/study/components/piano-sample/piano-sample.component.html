@@ -1,4 +1,5 @@
-<p>{{keysToPress() | json}}</p>
-@for (key of allKeys(); track key) {
-  <p>{{key}},</p>
-}
+<ul class="piano-keys-list">
+  @for(key of allKeys(); track key) {
+    <li [class]="key | pianoKeyClass : keysToPress()"></li>
+  }
+</ul>

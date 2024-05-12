@@ -3,16 +3,17 @@ import { Chord } from '../../../../midi/instruments/types/Chord';
 import { Note } from '../../../../midi/instruments/types/Note';
 import * as Piano from '../../../../midi/instruments/Piano';
 import { CommonModule } from '@angular/common';
+import { PaianoKeyClassPipe } from './piano-sample.pipe';
 
 @Component({
   selector: 'piano-sample',
   standalone: true,
-  imports: [CommonModule],
+  imports: [PaianoKeyClassPipe],
   templateUrl: './piano-sample.component.html',
   styleUrl: './piano-sample.component.scss',
 })
 export class PianoSampleComponent {
-  expected = signal<Note | Chord>({root: {note: 'C', octave: 0}, type: 'major'} as Chord);
+  expected = signal<Note | Chord>({root: {note: 'C', octave: 4}, type: 'major'} as Chord);
   // expected = signal<Note | Chord>({ note: 'C', octave: 3 } as Note);
 
   keysToPress = computed<number[]>(() => {
