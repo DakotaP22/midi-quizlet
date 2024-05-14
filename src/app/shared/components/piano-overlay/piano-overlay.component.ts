@@ -20,7 +20,7 @@ import { startWith } from 'rxjs';
 export class PianoOverlayComponent {
   instrumentSvc = inject(InsturmentService);
 
-  pianoSize = signal<PianoSize>('49');
+  pianoSize = signal<PianoSize>('76');
   offset = signal<PianoSizeKeyOffset>(36);
   selectedKeys = signal<number[]>([0, 4, 7]);
 

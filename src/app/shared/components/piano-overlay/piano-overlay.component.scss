@@ -70,7 +70,20 @@
 
 .piano.keys-49 {
   .white-key {
-    width: 25px;
+    width: 33px;
+    height: 175px;
+    margin: 0 -1px 0 -1px;
+  }
+  .black-key {
+    width: 15px;
+    height: 100px;
+    margin: 0 -8px 0 -8px;
+  }
+}
+
+.piano.keys-61 {
+  .white-key {
+    width: 28px;
     height: 175px;
     margin: 0 -1px 0 -1px;
   }
@@ -78,5 +91,18 @@
     width: 13px;
     height: 100px;
     margin: 0 -7px 0 -7px;
+  }
+}
+
+.piano.keys-76 {
+  .white-key {
+    width: 24px;
+    height: 175px;
+    margin: 0 -1px 0 -1px;
+  }
+  .black-key {
+    width: 11px;
+    height: 100px;
+    margin: 0 -6px 0 -6px;
   }
 }
