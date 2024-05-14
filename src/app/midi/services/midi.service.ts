@@ -7,10 +7,12 @@ import {
   map,
   of,
   shareReplay,
-  switchMap
+  switchMap,
+  takeUntil
 } from 'rxjs';
 import { MidiMessage } from '../midi-utils';
 import * as midiUtils from '../midi-utils';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable({ providedIn: 'root' })
 export class MidiService {
@@ -50,4 +52,5 @@ export class MidiService {
   throwError(error: string) {
     this.error$.next(error);
   }
+
 }

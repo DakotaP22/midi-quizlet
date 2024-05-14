@@ -1,17 +1,16 @@
 import { Injectable, inject } from '@angular/core';
-import { MidiService } from './midi.service';
 import {
   BehaviorSubject,
-  Subject,
   combineLatest,
   debounceTime,
   map,
   scan,
   shareReplay,
+  tap
 } from 'rxjs';
-import * as midiUtils from '../midi-utils';
 import * as Piano from '../instruments/Piano';
 import { Scale } from '../instruments/types/Scale';
+import { MidiService } from './midi.service';
 
 @Injectable({ providedIn: 'root' })
 export class InsturmentService {
@@ -30,7 +29,7 @@ export class InsturmentService {
       return acc;
     }, [] as number[]),
     debounceTime(50),
-    shareReplay()
+    shareReplay(),
   );
 
   notes$ = combineLatest({

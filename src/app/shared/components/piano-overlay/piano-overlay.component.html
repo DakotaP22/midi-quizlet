@@ -1,1 +1,7 @@
-<p>placeholder for virtual piano</p>
+<div [class]="pianoSize() | pianoSizeClass">
+  <ul class="piano-keys-list">
+    @for(key of keys(); track key) {
+      <li [class]="key.keyNumber | pianoKeyClass : key.selected"></li>
+    }
+  </ul>
+</div>
